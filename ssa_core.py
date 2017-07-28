@@ -8,14 +8,32 @@ import scipy.linalg as linalg
 import scipy.stats as stats
 import numpy as np
 
-from .tools import isscalar, nans
-
 try:
     from matplotlib import pyplot as plt
     import pylab
 except:
     print("Plotting functions will be disabled. Can't import matplotlib")
     pass
+
+
+def isscalar(x):
+    """
+    Returns true if x is scalar value
+
+    :param x:
+    :return:
+    """
+    return not isinstance(x, (list, tuple, dict, np.ndarray))
+
+
+def nans(dims):
+    """
+    nans((M,N,P,...)) is an M-by-N-by-P-by-... array of NaNs.
+
+    :param dims: dimensions tuple
+    :return: nans matrix
+    """
+    return np.nan * np.ones(dims)
 
 
 def ssa(y, dim) -> tuple:
